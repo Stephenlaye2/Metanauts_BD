@@ -1,7 +1,7 @@
 import os
 import requests
 import json
-from config import config
+import config
 
 
 Bearer_Token = config.Bearer_Token
