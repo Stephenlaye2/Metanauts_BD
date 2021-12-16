@@ -1,0 +1,14 @@
+Question 1: What is the use of the data that you are collecting?
+
+Answer:
+The data collected are the data of the most recent posts of a particular twitter user. The data include tweets, public_metrics (like_count, quote_count, reply_count, retweet_count), date created, etc. The collected information will help in identifying the most popular tweets.
+
+Question 2: What kind of analysis would you like to run on this data?
+
+Answer: 
+To get the most popular tweet, I would compare the public_metrics of each tweet to the others. The one with the most favoured result will be the most popular. I could also base my analysis on tweets at specific month if I have enough data. 
+
+Question 3:  What are the libraries that you are going to need in order run the said analysis?
+
+Answer: 
+json and requests are the first libraries I need. I would like to store the data in either excel file or MySQL database. If I have to use excel, the library requires is openpyxl. In the case of MySQL, the libraries require are mysql-connector-python, mysql
