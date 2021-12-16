@@ -3,6 +3,21 @@ Question 1: What is the use of the data that you are collecting?
 Answer:
 The data collected are the data of the most recent posts of a particular twitter user. The data include tweets, public_metrics (like_count, quote_count, reply_count, retweet_count), date created, etc. The collected information will help in identifying the most popular tweets.
 
+Sample Data =>
+ "data": [
+        {
+            "created_at": "2021-12-16T02:13:14.000Z",
+            "id": "1471302367454900230",
+            "public_metrics": {
+                "like_count": 1,
+                "quote_count": 0,
+                "reply_count": 0,
+                "retweet_count": 0
+            },
+            "text": "I think am now more of a Python guy than JavaScript."
+        },
+        ]
+
 Question 2: What kind of analysis would you like to run on this data?
 
 Answer: 
