@@ -10,7 +10,7 @@ with open('shakespeare.txt', 'r') as shakespeare_file:
 
 
 #Use regular expression to match the words
-p = re.compile('\w+[-_.\'a-zA-Z]*')
+p = re.compile('[a-zA-Z][-_.\'a-zA-Z]*')
 
 # Find all the matched word and store them in a list
 matched_data = p.findall(data)
@@ -18,7 +18,7 @@ matched_data = p.findall(data)
 print(matched_data)
 
 for word in matched_data:
-  if not (word.isnumeric()):
+  if not (word.isnumeric()) and word !='':
     clean_data.append(word)
    
   
