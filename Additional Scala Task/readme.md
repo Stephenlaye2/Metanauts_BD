@@ -3,7 +3,7 @@
 ``  val strLst: List[String] = List("apple","Pawpaw", "mango", "pawpaw", "Mango", "Pear", "Pawpaw", "Mango", "Apple", "Mango")
 val lst:List[Int] = List(2, 1, 4, 23, 46, 5, 8, 3, 6, 7, 9)``
 
-####1. Write a Scala program to count the number of occurrences of each element in a given list.####
+####Write a Scala program to count the number of occurrences of each element in a given list
 
 **Method: ``numOfOccurrence(strLst)``**
 
@@ -13,7 +13,7 @@ val lst:List[Int] = List(2, 1, 4, 23, 46, 5, 8, 3, 6, 7, 9)``
 Map(apple -> 2, pear -> 1, pawpaw -> 3, mango -> 4)
 ``
 
-####2. Write a Scala program to find the even and odd numbers from a given list.
+####Write a Scala program to find the even and odd numbers from a given list
 
 **Method: ``evenOddNum(lst)``**
 
