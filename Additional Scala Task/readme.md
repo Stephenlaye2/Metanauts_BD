@@ -3,7 +3,7 @@
 ``  val strLst: List[String] = List("apple","Pawpaw", "mango", "pawpaw", "Mango", "Pear", "Pawpaw", "Mango", "Apple", "Mango")
 val lst:List[Int] = List(2, 1, 4, 23, 46, 5, 8, 3, 6, 7, 9)``
 
-***Write a Scala program to count the number of occurrences of each element in a given list***
+***1. Write a Scala program to count the number of occurrences of each element in a given list***
 
 **Method: ``numOfOccurrence(strLst)``**
 
@@ -13,7 +13,7 @@ val lst:List[Int] = List(2, 1, 4, 23, 46, 5, 8, 3, 6, 7, 9)``
 Map(apple -> 2, pear -> 1, pawpaw -> 3, mango -> 4)
 ``
 
-***Write a Scala program to find the even and odd numbers from a given list***
+***2. Write a Scala program to find the even and odd numbers from a given list***
 
 **Method: ``evenOddNum(lst)``**
 
@@ -36,7 +36,7 @@ Odd Numbers: List(1, 23, 5, 3, 7, 9)
 ``
 
 
-***Write a Scala program to remove duplicates from a given list***
+***3. Write a Scala program to remove duplicates from a given list***
 
 **Method: ``removeDuplicate(strLst)``**
 
@@ -46,7 +46,7 @@ Odd Numbers: List(1, 23, 5, 3, 7, 9)
 Unique List: List(apple, pawpaw, mango, pear)
 ``
 
-***Write a Scala program to find the largest and smallest number from a given list***
+***4. Write a Scala program to find the largest and smallest number from a given list***
 
 **Method: ``largestSmallest(lst)``**
 
@@ -55,7 +55,7 @@ Unique List: List(apple, pawpaw, mango, pear)
 ``Max: 46.0
 Min: 1.0``
 
-***Write a Scala program to iterate over a list to print the elements and calculate the sum and product of all elements of this list***
+***5. Write a Scala program to iterate over a list to print the elements and calculate the sum and product of all elements of this list***
 
 **Method: ``addAndMultiply(lst)``**
 
