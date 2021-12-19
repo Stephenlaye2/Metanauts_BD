@@ -2,7 +2,8 @@
 
 ``  val strLst: List[String] = List("apple","Pawpaw", "mango", "pawpaw", "Mango", "Pear", "Pawpaw", "Mango", "Apple", "Mango")
 val lst:List[Int] = List(2, 1, 4, 23, 46, 5, 8, 3, 6, 7, 9)``
-####1. Write a Scala program to count the number of occurrences of each element in a given list.
+
+####1. Write a Scala program to count the number of occurrences of each element in a given list.####
 
 **Method: ``numOfOccurrence(strLst)``**
 
