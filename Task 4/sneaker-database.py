@@ -37,25 +37,25 @@ res_2 = requests.request("GET", url2, headers=headers)
 res_3 = requests.request("GET", url3, headers=headers, params=querystring1)
 
 # Get men sneakers
-res_4 = requests.request("GET", url1, headers=headers, params=querystring2)
+res_4 = requests.request("GET", url3, headers=headers, params=querystring2)
 
 # Get women sneakers
-res_5 = requests.request("GET", url1, headers=headers, params=querystring3)
+res_5 = requests.request("GET", url3, headers=headers, params=querystring3)
 
 # Get women sneakers with blue colorway
-res_6 = requests.request("GET", url1, headers=headers, params=querystring4)
+res_6 = requests.request("GET", url3, headers=headers, params=querystring4)
 
 # Get men sneakers that's release in 2021 with white colorway
-res_7 = requests.request("GET", url1, headers=headers, params=querystring5)
+res_7 = requests.request("GET", url3, headers=headers, params=querystring5)
 
 # Get Nike sneakers
-res_8 = requests.request("GET", url1, headers=headers, params=querystring6)
+res_8 = requests.request("GET", url3, headers=headers, params=querystring6)
 
 # Get Adidas sneakers
-res_9 = requests.request("GET", url1, headers=headers, params=querystring7)
+res_9 = requests.request("GET", url3, headers=headers, params=querystring7)
 
 # Get sneakers that's released on 05/11/2021
-res_10 = requests.request("GET", url1, headers=headers, params=querystring8)
+res_10 = requests.request("GET", url3, headers=headers, params=querystring8)
 
 # Array of response converted to json format
 json_object = [
