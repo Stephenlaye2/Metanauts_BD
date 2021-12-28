@@ -75,4 +75,4 @@ json_object = json.dumps(json_object, indent = 4)
 with open('sneaker-database.json', 'w') as json_file:
   json_file.write(json_object)
 
-# hdfs dfs copyfromlocal <File Path To Copy>
+
