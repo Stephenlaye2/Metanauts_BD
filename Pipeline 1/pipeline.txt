@@ -1,0 +1,37 @@
+			API NAME: Api-Football-Beta
+INTRODUCTION:
+Api-Footbal-Beta provides the data of football fixtures, player statistic, league to scorers, fixture predictions, leagues, and so on.
+
+What Will Be Cover:
+1. Why the API
+2. Type of ingestion tool needed
+3. Why the ingestion tool
+4. Type of storage system needed
+5. The data use case
+
+WHY THE API
+> To get statistic data of specific player
+> To know the current team the player is playing for
+> Know the player current league
+> The player rating, scores, assists, total passes completed, successful dribbling, 
+> Player performance from the start of current season till-date
+
+TYPE OF INGESTION TOOL
+The ingestion tool require is Flume
+
+WHY FLUME?
+> Streaming data requires an ingestion tool that can process it
+> Flume is good at ingesting streaming data.
+> Since batch processing is not needed, no need for Kafka in this case. However, Kafka is also good option
+
+STORAGE SYSTEM
+The selected storage system is HDFS
+
+USE CASE
+> Using the data to compare the overall performance of each player to one another
+> It will be useful to determine who is the best players within a league and even the best player in the world.
+> The player rating, scores, assists, successful dribbling, tackles won, etc will come in handing in deciding who is the best player within the league
+
+
+
+
