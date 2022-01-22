@@ -5,6 +5,7 @@ from kafka import KafkaProducer
 import sys
 sys.path.append("/home/stephen/Workspace/Metanauts_BD")
 import config
+
 # Class for getting the API data
 class GetData:
     def __init__(self, url):
@@ -34,7 +35,7 @@ class Producer:
         for data in self.json_data:
             self.data.append(data)
             self.produce().send(topic_name, value = self.data)
-            sleep(6)
+            sleep(0.2)
 
 
 url = "https://covid-193.p.rapidapi.com/statistics"

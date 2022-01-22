@@ -13,5 +13,5 @@ class Consumer:
                 hdfs_file.write(message.value)
 
  
-consumer = Consumer('Pipeline2', 'hdfs://localhost:9000/Pipeline/pipeline2_data.json')
+consumer = Consumer('Pipeline2', 'hdfs://localhost:9000/Pipeline/pipeline2_demo.json')
 consumer.consume()

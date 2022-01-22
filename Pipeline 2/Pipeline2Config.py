@@ -1,22 +1,11 @@
-
-from mysql import connector
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col
+from pyspark.sql.functions import col, desc
 import sys
 sys.path.append('/home/stephen/Workspace/Metanauts_BD')
 import config
 
 user = config.mysql_user
 password = config.mysql_password
-
-class MysqlCursor:
-    def __init__(self):
-        self.user = user
-        self.password = password
-        
-# Connect to mysql database using mysql-connector-python
-    def pipeline2_conn(self):
-        return connector.connect(user=self.user, password=self.password)
 
 class Pipeline2Config:
     def __init__(self, jdbc_url, jdbc_driver, dbtable):
@@ -57,28 +46,81 @@ class Pipeline2Config:
             useSSL = self.useSSL
         ).load()
 
-mysql_conn = MysqlCursor()
-conn_db = mysql_conn.pipeline2_conn()
-cursor = conn_db.cursor()
-cursor.execute("USE Pipeline2")
-cursor.execute("DROP TABLE IF EXISTS covid_statistics;")
-cursor.execute("CREATE TABLE IF NOT EXISTS covid_statistics(continent TEXT,\
-     country TEXT, population TEXT, new_cases TEXT, active_cases INT, critical_cases INT,\
-          recovered INT, cases_In_1M_pop INT, total_cases INT, deaths_In_1M_pop INT,\
-               total_deaths INT, total_test INT, day VARCHAR(20), time VARCHAR(50))")
 
+# CREATE DATAFRAME
 jdbc_url = "jdbc:mysql://localhost:3306/Pipeline2"
 jdbc_driver = "com.mysql.jdbc.Driver"
-dbtable = "covid_statistics"
+dbtable = "pipeline2_demo"
+
 pipeline2 = Pipeline2Config(jdbc_url, jdbc_driver, dbtable)
 
-df = pipeline2.spark_job().read.format("json").load("hdfs://localhost:9000/Pipeline/pipeline2_data.json")
+df = pipeline2.spark_job().read.format("json").load("hdfs://localhost:9000/Pipeline/pipeline2_demo.json")
 
-select_df= df.select("continent", "country", "population",col("cases.new").alias("new_cases"),\
+df.printSchema()
+select_df = df.select("continent", "country", "population", col("cases.new").alias("new_cases"),\
      col("cases.active").alias("active_cases"), col("cases.critical").alias("critical_cases"), "cases.recovered",\
-          col("cases.1M_pop").alias("cases_In_1M_pop"), col("cases.total").alias("total_cases"), col("deaths.1M_pop").alias("deaths_In_1M_pop"),\
-               col("deaths.total").alias("total_deaths"), col("tests.total").alias("total_test"), "day", "time")
+        col("cases.1M_pop").alias("cases_In_1M_pop"), col("cases.total").alias("total_cases"), col("deaths.1M_pop").alias("deaths_In_1M_pop"),\
+            col("deaths.total").alias("total_deaths"), col("tests.total").alias("total_test"), "day", "time" )
 
+
+# Write to MySQL database
 pipeline2.write_df_to_mysqldb(select_df)
 pipeline2_data = pipeline2.read_df_from_mysqldb()
-pipeline2_data.select("continent", "country", "population", "new_cases", "active_cases", "deaths_In_1M_pop").show(80)
+# Load continent
+active_cont_cases = pipeline2_data.filter(col("continent") !="null").groupBy("continent").sum("active_cases", "total_deaths", "recovered")
+active_cont_cases.show()
+
+# Load top 3 countries in Europe
+# active_cont_cases = pipeline2_data.filter(col("continent") == "Europe").groupBy("country").\
+#     max("active_cases", "total_deaths").orderBy(desc("max(active_cases)")).limit(4)
+
+# Load top 3 countries in North-America
+active_cont_cases = pipeline2_data.filter(col("continent") == "North-America").groupBy("country").\
+    max("active_cases", "total_deaths").orderBy(desc("max(active_cases)")).limit(4)
+
+# # Show top 3 rows
+active_cont_cases = active_cont_cases.filter(col("country") != "North-America")
+active_cont_cases.show()
+
+
+# PERFORMING ANALYSIS USING MATPLOTLIB
+""" 
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas
+
+# # Create individual list by converting dataframe to pandas
+country = active_cont_cases.toPandas()["country"].values.tolist()
+active_cases = active_cont_cases.toPandas()["max(active_cases)"].values.tolist()
+total_deaths = active_cont_cases.toPandas()["max(total_deaths)"].values.tolist()
+total_recovered = active_cont_cases.toPandas()["max(recovered)"].values.tolist()
+
+# # Width of the bars
+width = 0.25
+
+# # Calculate the position of each bar
+x1 = np.arange(len(country))
+x2 = [i+width for i in x1 ]
+x3 = [i + width for i in x2]
+
+# # Plot each bar
+plt.bar(x1, active_cases, width, color="blue", label='Active cases')
+plt.bar(x2, total_deaths, width, color="red", label='Total deaths')
+# plt.bar(x3, total_recovered, width, color="green", label='Total recovered')
+plt.title("Top 3 countries with most Active cases in North America (2022-01-15)")
+
+# # Set y and x labels
+plt.ylabel("N x 10 million")
+plt.xlabel("Country")
+
+# # Set the position of ticks and the country in the x-axis
+plt.xticks(x1 + width/2, country)
+
+# # Show the graph
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+# Save the plot
+plt.savefig("figure1")
+"""
