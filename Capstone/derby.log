@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Sat Jan 29 00:16:25 GMT 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-017e-a330-b36b-0000054c3540 
+on database directory /home/stephen/Workspace/Metanauts_BD/Capstone/~/opt/hive/metastore_db with class loader sun.misc.Launcher$AppClassLoader@c39f790 
+Loaded from file:/home/stephen/opt/hive/lib/derby-10.10.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_221-b11
+user.dir=/home/stephen/Workspace/Metanauts_BD/Capstone
+os.name=Linux
+os.arch=amd64
+os.version=4.15.0-166-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
