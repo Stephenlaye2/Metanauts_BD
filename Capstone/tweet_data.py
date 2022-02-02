@@ -42,8 +42,6 @@ class StreamData(tweepy.Stream):
         if status_code == 420:
             return False
             
-
-
     
 # Initialize instance of the subclass
 stream_data = StreamData(
@@ -57,11 +55,16 @@ df = spark.read.format("json").load("hdfs://localhost:9000/Pipeline/rawgpy_data.
 
 # Filter out top 3 rated platform
 top3_df = df.filter((col("rating") >= 4) & (col("ratings_count") >= 4000)).select("name").rdd
-def get_games(index):
-    top3_df.flatMap(lambda x: x).take(3)[index]
 
-stream_data.filter(track=[f"{get_games(0)}",\
-     f"{get_games(1)}", f"{get_games(2)}"])
+def get_games(index):
+    return top3_df.flatMap(lambda x: x).take(3)[index].split(':')[0]
+
+print(get_games(0))
+# game_index_1 = get_games(1).replace(':', '')
+# print(game_index_1)
+
+stream_data.filter(track=[get_games(0),\
+     get_games(1), get_games(2)])
 
 # Filter realtime Tweets by keyword
 # stream_data.filter(track=["python,", "java", "scala", "spark"])

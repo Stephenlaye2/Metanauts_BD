@@ -15,5 +15,6 @@ class Consumer:
 # consumer = Consumer('hdfs://localhost:9000/Pipeline/rawgpy_data.json')
 # consumer.consume('rawgpy_topic')
 
+
 consumer = Consumer('hdfs://localhost:9000/Pipeline/tweet_data.json')
 consumer.consume('capstone_tweet')

@@ -1,6 +1,5 @@
 import requests
 import datetime
-import tweepy
 from time import sleep
 import sys
 sys.path.append('/home/stephen/Workspace/Metanauts_BD')
@@ -58,7 +57,7 @@ class IngestRawgpy:
                 }
             self.data.append(new_data)
             producer.send_data(topic_name, self.data)
-            sleep(2)
+            sleep(1)
             id += 1
             
             
