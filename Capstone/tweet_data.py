@@ -59,7 +59,7 @@ top3_df = df.filter((col("rating") >= 4) & (col("ratings_count") >= 4000)).selec
 def get_games(index):
     return top3_df.flatMap(lambda x: x).take(3)[index].split(':')[0]
 
-print(get_games(0))
+print(get_games(2))
 # game_index_1 = get_games(1).replace(':', '')
 # print(game_index_1)
 
